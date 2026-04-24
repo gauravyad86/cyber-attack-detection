@@ -119,20 +119,6 @@ uv run pytest -q
 uv run python scripts/perf_benchmark.py
 ```
 
-## Deploy on Render (Dashboard URL)
-1. Push this repo to GitHub.
-2. In Render: **New + -> Blueprint**.
-3. Select this repo (Render reads `render.yaml`).
-4. Deploy and open generated service URL.
-
-Notes:
-- Service runs dashboard + live simulator together.
-- Live behavior is controlled by env vars:
-  - `CADS_LIVE_MODE` (`single`/`compare_all`/`ensemble`)
-  - `CADS_LIVE_INTERVAL` (seconds)
-  - `CADS_LIVE_BATCH_SIZE`
-  - `CADS_LIVE_CYCLES`
-
 ## Quick Notes
 - If dashboard is empty, run replay command again.
 - If API says model missing, run training again.
