@@ -13,11 +13,12 @@ services:
       - key: CADS_LIVE_MODE
         value: ensemble
       - key: CADS_LIVE_INTERVAL
-        value: "5"
+        value: "8"
       - key: CADS_LIVE_BATCH_SIZE
-        value: "3"
+        value: "1"
       - key: CADS_LIVE_CYCLES
         value: "100000000"
+      - key: CADS_RESET_ALERT_DB
+        value: "1"
       - key: STREAMLIT_LOG_LEVEL
         value: warning
-

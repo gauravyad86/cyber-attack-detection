@@ -159,17 +159,18 @@ def _label_bar(df: pd.DataFrame) -> alt.Chart:
     )
 
 
-def _timeline(df: pd.DataFrame) -> alt.Chart:
+def _timeline(df: pd.DataFrame, bucket: str = "15min") -> alt.Chart:
     if df.empty:
         return alt.Chart(pd.DataFrame({"timestamp": [], "count": []})).mark_line()
 
     trend = (
         df.set_index("timestamp")
-        .resample("15min")["id"]
+        .resample(bucket)["id"]
         .count()
         .rename("count")
         .reset_index()
     )
+    title_bucket = bucket.replace("min", "-min")
     return (
         alt.Chart(trend)
         .mark_line(point=True, strokeWidth=2.5)
@@ -178,7 +179,7 @@ def _timeline(df: pd.DataFrame) -> alt.Chart:
             y=alt.Y("count:Q", title="Alerts"),
             tooltip=["timestamp:T", "count:Q"],
         )
-        .properties(title="Alert Velocity (15-min buckets)", height=280)
+        .properties(title=f"Alert Velocity ({title_bucket} buckets)", height=280)
     )
 
 
@@ -411,7 +412,8 @@ def main() -> None:
             with c2:
                 st.altair_chart(_label_bar(filtered), use_container_width=True)
 
-            st.altair_chart(_timeline(filtered), use_container_width=True)
+            timeline_bucket = "1min" if live_refresh else "15min"
+            st.altair_chart(_timeline(filtered, bucket=timeline_bucket), use_container_width=True)
 
         with tab_traffic:
             c3, c4 = st.columns(2)
