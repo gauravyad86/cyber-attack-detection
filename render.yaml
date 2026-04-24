@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: cyber-attack-detection-dashboard
+    env: python
+    plan: free
+    autoDeploy: true
+    buildCommand: uv sync --frozen --extra dev
+    startCommand: ./scripts/render_start.sh
+    healthCheckPath: /
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.12
+      - key: CADS_LIVE_MODE
+        value: ensemble
+      - key: CADS_LIVE_INTERVAL
+        value: "5"
+      - key: CADS_LIVE_BATCH_SIZE
+        value: "3"
+      - key: CADS_LIVE_CYCLES
+        value: "100000000"
+      - key: STREAMLIT_LOG_LEVEL
+        value: warning
+
