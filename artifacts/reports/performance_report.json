@@ -1,0 +1,7 @@
+{
+  "samples": 500,
+  "latency_ms_avg": 32.3912,
+  "latency_ms_p50": 31.6458,
+  "latency_ms_p95": 37.2925,
+  "latency_ms_p99": 56.6415
+}

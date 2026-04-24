@@ -1,0 +1,92 @@
+{
+  "total_records": 5000,
+  "split_sizes": {
+    "train": 3000,
+    "val": 1000,
+    "test": 1000
+  },
+  "class_distribution": {
+    "overall": {
+      "benign": 3528,
+      "dos": 585,
+      "port_scan": 489,
+      "brute_force": 398
+    },
+    "train": {
+      "benign": 2117,
+      "dos": 351,
+      "port_scan": 293,
+      "brute_force": 239
+    },
+    "val": {
+      "benign": 706,
+      "dos": 117,
+      "port_scan": 98,
+      "brute_force": 79
+    },
+    "test": {
+      "benign": 705,
+      "dos": 117,
+      "port_scan": 98,
+      "brute_force": 80
+    }
+  },
+  "feature_columns": [
+    "src_port",
+    "dst_port",
+    "packet_count",
+    "byte_count",
+    "duration",
+    "bytes_per_packet",
+    "packets_per_second",
+    "bytes_per_second",
+    "is_well_known_dst_port",
+    "same_src_dst",
+    "protocol_id",
+    "src_is_private",
+    "dst_is_private",
+    "src_ip_low16",
+    "dst_ip_low16",
+    "hour_of_day"
+  ],
+  "config": {
+    "test_size": 0.2,
+    "val_size": 0.2,
+    "random_seed": 42,
+    "raw_glob": "*.csv",
+    "canonical_columns": [
+      "timestamp",
+      "src_ip",
+      "dst_ip",
+      "src_port",
+      "dst_port",
+      "protocol",
+      "packet_count",
+      "byte_count",
+      "duration",
+      "label"
+    ],
+    "feature_columns": [
+      "src_port",
+      "dst_port",
+      "packet_count",
+      "byte_count",
+      "duration",
+      "bytes_per_packet",
+      "packets_per_second",
+      "bytes_per_second",
+      "is_well_known_dst_port",
+      "same_src_dst",
+      "protocol_id",
+      "src_is_private",
+      "dst_is_private",
+      "src_ip_low16",
+      "dst_ip_low16",
+      "hour_of_day"
+    ],
+    "benign_labels": [
+      "benign",
+      "normal"
+    ]
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "trained_models": [
+    "logistic_regression",
+    "random_forest",
+    "isolation_forest"
+  ],
+  "best_supervised_model": "random_forest",
+  "metrics": {
+    "logistic_regression": {
+      "precision_weighted": 0.9818191616216521,
+      "recall_weighted": 0.978,
+      "f1_weighted": 0.9789706666981131,
+      "f1_macro": 0.9645502468721097,
+      "roc_auc_ovr_weighted": 0.9994156595431097,
+      "precision_attack_binary": 0.9363057324840764,
+      "recall_attack_binary": 0.9966101694915255,
+      "f1_attack_binary": 0.9655172413793104
+    },
+    "random_forest": {
+      "precision_weighted": 1.0,
+      "recall_weighted": 1.0,
+      "f1_weighted": 1.0,
+      "f1_macro": 1.0,
+      "roc_auc_ovr_weighted": 1.0,
+      "precision_attack_binary": 1.0,
+      "recall_attack_binary": 1.0,
+      "f1_attack_binary": 1.0
+    },
+    "isolation_forest": {
+      "precision_attack_binary": 0.6674259681093394,
+      "recall_attack_binary": 0.9932203389830508,
+      "f1_attack_binary": 0.7983651226158038
+    }
+  },
+  "feature_columns": [
+    "src_port",
+    "dst_port",
+    "packet_count",
+    "byte_count",
+    "duration",
+    "bytes_per_packet",
+    "packets_per_second",
+    "bytes_per_second",
+    "is_well_known_dst_port",
+    "same_src_dst",
+    "protocol_id",
+    "src_is_private",
+    "dst_is_private",
+    "src_ip_low16",
+    "dst_ip_low16",
+    "hour_of_day"
+  ],
+  "labels": [
+    "benign",
+    "brute_force",
+    "dos",
+    "port_scan"
+  ],
+  "data_shapes": {
+    "train": [
+      3000,
+      16
+    ],
+    "val": [
+      1000,
+      16
+    ],
+    "test": [
+      1000,
+      16
+    ]
+  }
+}
