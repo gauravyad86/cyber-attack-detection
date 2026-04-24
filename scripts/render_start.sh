@@ -20,7 +20,7 @@ if [[ ! -f "artifacts/models/random_forest.joblib" || ! -f "artifacts/models/lab
 fi
 
 # Optional clean start for alerts DB.
-if [[ "${CADS_RESET_ALERT_DB:-0}" == "1" ]]; then
+if [[ "${CADS_RESET_ALERT_DB:-1}" == "1" ]]; then
   rm -f artifacts/reports/alerts.db
 fi
 
@@ -28,8 +28,8 @@ fi
 echo "[boot] starting live simulator in background"
 uv run cads simulate-live-alerts \
   --mode "${CADS_LIVE_MODE:-ensemble}" \
-  --interval "${CADS_LIVE_INTERVAL:-5}" \
-  --batch-size "${CADS_LIVE_BATCH_SIZE:-3}" \
+  --interval "${CADS_LIVE_INTERVAL:-8}" \
+  --batch-size "${CADS_LIVE_BATCH_SIZE:-1}" \
   --cycles "${CADS_LIVE_CYCLES:-100000000}" \
   >/tmp/cads-live.log 2>&1 &
 
@@ -40,4 +40,3 @@ exec uv run streamlit run src/cads/dashboard/app.py \
   --server.address 0.0.0.0 \
   --browser.gatherUsageStats false \
   --logger.level "${STREAMLIT_LOG_LEVEL:-warning}"
-
