@@ -368,8 +368,14 @@ def main() -> None:
     col_left, col_live, col_refresh = st.columns([3, 1, 1])
     with col_left:
         st.markdown("Track threat alerts, investigate suspicious flows, and export filtered evidence.")
+    if "live_mode_enabled" not in st.session_state:
+        st.session_state["live_mode_enabled"] = True
     with col_live:
-        live_refresh = st.toggle("Live Mode", value=False, help="Auto-refresh dashboard data.")
+        live_refresh = st.toggle(
+            "Live Mode",
+            key="live_mode_enabled",
+            help="Auto-refresh dashboard data. Stays ON until you switch it OFF.",
+        )
     refresh_interval = st.selectbox(
         "Refresh Every (seconds)",
         options=[3, 5, 8, 10, 15, 30],
